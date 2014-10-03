@@ -9,7 +9,7 @@ import java.util.Map;
 public class Database {
 
     public static enum Type {
-        CRASH(R.drawable.ic_road), PIPELINE(R.drawable.icon_water), GARBAGE(R.drawable.ic_polution), OTHER(R.drawable.ic_more);
+        CRASH(R.drawable.road), PIPELINE(R.drawable.water), GARBAGE(R.drawable.garbige), OTHER(R.drawable.other);
 
         public final int resId;
 

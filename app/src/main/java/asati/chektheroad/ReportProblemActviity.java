@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -24,13 +25,15 @@ import butterknife.OnClick;
  */
 public class ReportProblemActviity extends Activity {
 
-    public static final int PROBLEM_TYPE_DAMAGED_ROAD = 1;
-    public static final int PROBLEM_TYPE_PIPELINE = 2;
-    public static final int PROBLEM_TYPE_GARBAGE = 3;
-    public static final int PROBLEM_TYPE_OTHER = 4;
+    public static final int PROBLEM_TYPE_DAMAGED_ROAD = 0;
+    public static final int PROBLEM_TYPE_PIPELINE = 1;
+    public static final int PROBLEM_TYPE_GARBAGE = 2;
+    public static final int PROBLEM_TYPE_OTHER = 3;
     public static final String EXTRA_PROBLEM_TYPE = BuildConfig.PACKAGE_NAME + ".extra.PROBLEM_TYPE";
 
     private static final int REQUEST_CODE_MAKE_CAMERA_PICTURE = 1;
+    private static final String STATE_PICTURE_FILE = "file";
+    public static final String EXTRA_LOCATION = "extra_location";
 
     @InjectView(R.id.report_problem_photo)
     ImageView problemImage;
@@ -48,6 +51,30 @@ public class ReportProblemActviity extends Activity {
         } else if (problemType == PROBLEM_TYPE_PIPELINE) {
             // your logic here
         } // else ...
+
+        if (savedInstanceState != null) {
+            mCameraPictureFile = (File) savedInstanceState.getSerializable(STATE_PICTURE_FILE);
+        }
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if (mCameraPictureFile != null) {
+            problemImage.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setCameraPicture();
+                }
+            }, 5000);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(STATE_PICTURE_FILE, mCameraPictureFile);
     }
 
     @OnClick(R.id.report_problem_photo)
@@ -55,13 +82,25 @@ public class ReportProblemActviity extends Activity {
         dispatchTakePictureIntent();
     }
 
+    @OnClick(R.id.button)
+    public void onSendButtonClicked() {
+        int problemType = getIntent().getIntExtra(EXTRA_PROBLEM_TYPE, PROBLEM_TYPE_OTHER);
+        LatLng location = getIntent().getParcelableExtra(EXTRA_LOCATION);
+        Database.putToMap(location, Database.Type.values()[problemType]);
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MAKE_CAMERA_PICTURE) {
             // handle camera picture here
-            Picasso.with(this).load(mCameraPictureFile).centerCrop().resize(problemImage.getWidth(), problemImage.getHeight()).into(problemImage);
+            setCameraPicture();
         }
+    }
+
+    private void setCameraPicture() {
+        Picasso.with(this).load(mCameraPictureFile).centerCrop().resize(problemImage.getWidth(), problemImage.getHeight()).into(problemImage);
     }
 
     private void dispatchTakePictureIntent() {

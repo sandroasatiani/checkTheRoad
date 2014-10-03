@@ -10,9 +10,14 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,17 +52,33 @@ public class MapsActivity extends FragmentActivity implements OnLocationChangedL
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
+            mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                @Override
+                public void onMapLongClick(LatLng latLng) {
+                    mOverridenLocation = latLng;
+                }
+            });
             // Check if we were successful in obtaining the map.
         }
     }
 
+    private LatLng mMyCurrentLocation;
+    private LatLng mOverridenLocation;
+
     @Override
     public void onLocationChanged(Location location) {
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        mMyCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+        if (mOverridenLocation == null) {
+            mOverridenLocation = mMyCurrentLocation;
+        }
         mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(latLng).title("My location"));
+        Set<Map.Entry<LatLng, Database.Type>> entries = Database.listEverything();
+        for (Map.Entry<LatLng, Database.Type> entry : entries) {
+            mMap.addMarker(new MarkerOptions().position(entry.getKey()).icon(BitmapDescriptorFactory.fromResource(entry.getValue().resId)).title("Title"));
+        }
+        mMap.addMarker(new MarkerOptions().position(mMyCurrentLocation).title("My location"));
         CameraPosition cameraPosition = CameraPosition.builder()
-                .target(latLng)
+                .target(mMyCurrentLocation)
                 .zoom(17f)
                 .build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -84,9 +105,14 @@ public class MapsActivity extends FragmentActivity implements OnLocationChangedL
     }
 
     private void startReportActivity(int problemType) {
-        Intent intent = new Intent(this, ReportProblemActviity.class);
-        intent.putExtra(ReportProblemActviity.EXTRA_PROBLEM_TYPE, problemType);
-        startActivity(intent);
+        if (mOverridenLocation == null) {
+            Toast.makeText(this, "Current location is not known yet", Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent = new Intent(this, ReportProblemActviity.class);
+            intent.putExtra(ReportProblemActviity.EXTRA_PROBLEM_TYPE, problemType);
+            intent.putExtra(ReportProblemActviity.EXTRA_LOCATION, mOverridenLocation);
+            startActivity(intent);
+        }
     }
 
 

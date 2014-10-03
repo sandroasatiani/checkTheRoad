@@ -68,6 +68,20 @@ public class MapsActivity extends FragmentActivity implements OnLocationChangedL
         startReportActivity(ReportProblemActviity.PROBLEM_TYPE_DAMAGED_ROAD);
     }
 
+    @OnClick(R.id.icon_water)
+    public void onDamagedPipelineIconClicked(){
+        startReportActivity(ReportProblemActviity.PROBLEM_TYPE_PIPELINE);
+    }
+
+    @OnClick(R.id.icon_polution)
+    public void onDamagedGarbageIconClicked(){
+        startReportActivity(ReportProblemActviity.PROBLEM_TYPE_GARBAGE);
+    }
+
+    @OnClick(R.id.icon_more)
+    public void onDamagedOtherIconClicked(){
+        startReportActivity(ReportProblemActviity.PROBLEM_TYPE_OTHER);
+    }
 
     private void startReportActivity(int problemType) {
         Intent intent = new Intent(this, ReportProblemActviity.class);

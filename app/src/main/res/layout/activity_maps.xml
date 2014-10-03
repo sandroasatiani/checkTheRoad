@@ -28,6 +28,7 @@
 
         <ImageButton
             android:src="@drawable/ic_water"
+            android:id="@+id/icon_water"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
@@ -37,6 +38,7 @@
 
         <ImageButton
             android:src="@drawable/ic_polution"
+            android:id="@+id/icon_polution"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -46,6 +48,7 @@
 
         <ImageButton
             android:src="@drawable/ic_more"
+            android:id="@+id/icon_more"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

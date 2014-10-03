@@ -27,7 +27,7 @@
             android:layout_weight="1"/>
 
         <ImageButton
-            android:src="@drawable/icon_water"
+            android:src="@drawable/ic_water"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
@@ -45,7 +45,7 @@
             android:layout_weight="1"/>
 
         <ImageButton
-            android:src="@drawable/ic_road"
+            android:src="@drawable/ic_more"
             android:background="#00ffffff"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

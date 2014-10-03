@@ -14,6 +14,24 @@
         revision="20.0.0"
         sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
     <item
+        dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/butterknife-5.1.2-8685b5131396cb789dafef9f137a36c66acb67d6.jar"
+        jar="/Users/ani110ani/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/5.1.2/daf5472b0df6dabaceb6ad755b3812535863965a/butterknife-5.1.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="daf5472b0df6dabaceb6ad755b3812535863965a"/>
+    <item
+        dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/classes-31a608a45b659d9747c2c603543636890ea3110c.jar"
+        jar="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/exploded-aar/com.norbsoft.typefacehelper/library/0.9.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0c8912a9df9a58bc70e24d750aa9fc4cea2d52e6"/>
+    <item
+        dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/picasso-2.3.4-6a06ad97cab5bbef65fff21b6d64df0b59e17d6e.jar"
+        jar="/Users/ani110ani/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.3.4/3b646ddbdac8a33fc45b64564011da81d23e4635/picasso-2.3.4.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3b646ddbdac8a33fc45b64564011da81d23e4635"/>
+    <item
         dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/classes-1c4c1f55c357795e1863da5347205f3d3b8fd630.jar"
         jar="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.2.08/classes.jar"
         jumboMode="false"
@@ -25,12 +43,6 @@
         jumboMode="false"
         revision="20.0.0"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
-    <item
-        dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/butterknife-5.1.2-8685b5131396cb789dafef9f137a36c66acb67d6.jar"
-        jar="/Users/ani110ani/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/5.1.2/daf5472b0df6dabaceb6ad755b3812535863965a/butterknife-5.1.2.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="daf5472b0df6dabaceb6ad755b3812535863965a"/>
     <item
         dex="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/pre-dexed/debug/classes-477cf4b34193feaba532f392334f664af0472cf1.jar"
         jar="/Users/ani110ani/Documents/Android developer/ChekTheRoad/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"

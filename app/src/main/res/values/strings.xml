@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Check The Road</string>
+    <string name="title_activity_maps">Check The Road</string>
+    <string name="send_button">Send It!</string>
+
+</resources>
